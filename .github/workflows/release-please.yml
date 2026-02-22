@@ -19,5 +19,6 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           release-type: simple
+          config-file: .release-please-config.json
           skip-github-pull-request: false
           skip-github-release: false
