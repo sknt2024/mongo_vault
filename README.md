@@ -96,9 +96,26 @@ The app will be in the `dist` folder.
 
 **dist/MongoVault.app**
 
-## 💿 Download
+---
 
-Download the latest DMG from:
+## 📥 Download
 
-👉 Releases Page
-https://github.com/sknt2024/mongo_vault/releases
+The latest version of **MongoVault** is available from:
+
+👉 https://github.com/sknt2024/mongo_vault/releases
+
+1. Download the latest `.dmg`
+2. Open it
+3. Drag **MongoVault.app** into your **Applications** folder
+
+---
+
+## 🔐 First Launch (Important for macOS)
+
+Because MongoVault is currently distributed without Apple notarization, macOS may block it the first time you open it.
+
+After moving the app to Applications, run this command once in Terminal:
+
+```bash
+xattr -rd com.apple.quarantine /Applications/MongoVault.app
+```
