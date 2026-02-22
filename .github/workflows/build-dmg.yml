@@ -1,0 +1,57 @@
+name: 📦 Build macOS DMG
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: 🍺 Install MongoDB Tools
+        run: |
+          brew update
+          brew install mongodb-database-tools
+
+      - name: 🏗 Build App
+        run: |
+          source venv/bin/activate
+          pyinstaller --windowed --name MongoVault run.py
+
+      - name: 📦 Create DMG
+        run: |
+          brew install create-dmg
+          create-dmg \
+            --volname "MongoVault" \
+            --window-size 600 400 \
+            --app-drop-link 450 200 \
+            MongoVault.dmg \
+            dist/MongoVault.app
+
+      - name: 🚀 Upload DMG to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: MongoVault.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
