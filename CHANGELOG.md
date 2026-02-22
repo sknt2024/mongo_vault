@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/sknt2024/mongo_vault/compare/v1.4.0...v1.5.0) (2026-02-22)
+
+
+### Features
+
+* Implement collection selection UI, enabling include/exclude filtering for backup and restore operations, and add a new service for fetching MongoDB collections. ([de63b10](https://github.com/sknt2024/mongo_vault/commit/de63b10559de621c58862a906d32796c926bc03c))
+
 ## [1.4.0](https://github.com/sknt2024/mongo_vault/compare/v1.3.0...v1.4.0) (2026-02-22)
 
 
