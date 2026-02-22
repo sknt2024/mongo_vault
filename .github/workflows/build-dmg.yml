@@ -33,9 +33,9 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
-      - name: 🍺 Install MongoDB Tools
+      - name: 🍺 Install MongoDB Database Tools
         run: |
-          brew update
+          brew tap mongodb/brew
           brew install mongodb-database-tools
 
       - name: 🏗 Build App
