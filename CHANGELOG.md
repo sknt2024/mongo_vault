@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/sknt2024/mongo_vault/compare/v1.5.5...v1.6.0) (2026-02-22)
+
+
+### Features
+
+* Externalize application version to `version.txt` and configure `release-please` to manage it. ([3e28236](https://github.com/sknt2024/mongo_vault/commit/3e2823678ac0b40cc86153c0205b781647eb16e5))
+
 ## [1.5.5](https://github.com/sknt2024/mongo_vault/compare/v1.5.4...v1.5.5) (2026-02-22)
 
 
