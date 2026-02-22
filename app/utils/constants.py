@@ -3,19 +3,16 @@ from pathlib import Path
 
 APP_NAME = "MongoVault"
 
-
 def get_version():
     try:
-        # If running from PyInstaller bundle
         if getattr(sys, "frozen", False):
+            # Running inside PyInstaller bundle
             base_path = Path(sys._MEIPASS)
         else:
-            # Go from app/utils/constants.py → project root
+            # Running in dev mode
             base_path = Path(__file__).resolve().parents[2]
 
         version_file = base_path / "version.txt"
-
-        print("Looking for version at:", version_file)  # DEBUG
 
         if version_file.exists():
             return version_file.read_text().strip()
@@ -25,7 +22,5 @@ def get_version():
 
     return "0.0.0"
 
-
 APP_VERSION = get_version()
-
 DEFAULT_BACKUP_DIR = "./backups"
