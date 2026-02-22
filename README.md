@@ -1,5 +1,12 @@
 # 🛡 MongoVault
 
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)]()
+
+📘 **Documentation**
+- [Changelog](CHANGELOG.md)
+- [License](LICENSE)
+
+
 **MongoVault** is a professional macOS desktop application for MongoDB Backup & Restore built with PyQt6.
 
 It provides a modern GUI for running `mongodump` and `mongorestore` with enterprise-grade features like:
