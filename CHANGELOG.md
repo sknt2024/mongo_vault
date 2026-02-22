@@ -1,4 +1,13 @@
-# 📦 Changelog
+# Changelog
+
+## [1.1.1](https://github.com/sknt2024/mongo_vault/compare/v1.1.0...v1.1.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* trigger automated release ([f8fdbe1](https://github.com/sknt2024/mongo_vault/commit/f8fdbe1e0e9c19fd68c5e126070616e4106cc12f))
+
+## 📦 Changelog
 
 All notable changes to **MongoVault** will be documented in this file.
 
@@ -8,7 +17,7 @@ The format follows:
 
 ---
 
-# [1.1.0] - 2026-02-22
+## [1.1.0] - 2026-02-22
 
 ## ✨ Added
 
@@ -72,7 +81,7 @@ The format follows:
 
 ---
 
-# [1.0.0] - 2026-02-20
+## [1.0.0] - 2026-02-20
 
 ## 🚀 Initial Release
 
@@ -96,7 +105,7 @@ The format follows:
 
 ---
 
-# [Unreleased]
+## [Unreleased]
 
 ## 🎯 Planned Features
 
@@ -139,7 +148,7 @@ The format follows:
 
 ---
 
-# 🏷 Versioning Strategy
+## 🏷 Versioning Strategy
 
 MongoVault follows **Semantic Versioning**:
 
@@ -152,7 +161,7 @@ MongoVault follows **Semantic Versioning**:
 
 ---
 
-# 📌 Release Guidelines
+## 📌 Release Guidelines
 
 - UI-only enhancements → MINOR
 - New features → MINOR
@@ -161,7 +170,7 @@ MongoVault follows **Semantic Versioning**:
 
 ---
 
-# 🛡 About MongoVault
+## 🛡 About MongoVault
 
 MongoVault is a secure, modern macOS desktop application designed to provide:
 
@@ -178,7 +187,7 @@ Built with:
 
 ---
 
-# 🚀 Current Stable Version
+## 🚀 Current Stable Version
 
 
 MongoVault has now evolved into a modular, theme-enabled, smart-restore macOS desktop application ready for production expansion.
