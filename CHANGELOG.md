@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/sknt2024/mongo_vault/compare/v1.7.0...v1.7.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* Enhance app build with icon and version data ([47866e0](https://github.com/sknt2024/mongo_vault/commit/47866e0e8eb254ac2fa487074b6367ece1ec5b03))
+
 ## [1.7.0](https://github.com/sknt2024/mongo_vault/compare/v1.6.0...v1.7.0) (2026-02-22)
 
 
