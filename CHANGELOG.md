@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/sknt2024/mongo_vault/compare/v1.6.0...v1.7.0) (2026-02-22)
+
+
+### Features
+
+* Add application icon, architecture documentation, and enhance version retrieval for bundled applications. ([9a12e4d](https://github.com/sknt2024/mongo_vault/commit/9a12e4d7a26f8c46328123ed8e0ed29d948f2de1))
+
 ## [1.6.0](https://github.com/sknt2024/mongo_vault/compare/v1.5.5...v1.6.0) (2026-02-22)
 
 
