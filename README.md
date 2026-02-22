@@ -1,17 +1,30 @@
 # 🛡 MongoVault
 
-![Version](https://img.shields.io/github/v/release/sknt2024/mongo_vault?style=flat-square)
-![CI](https://github.com/sknt2024/mongo_vault/actions/workflows/release-please.yml/badge.svg)
-![Downloads](https://img.shields.io/github/downloads/sknt2024/mongo_vault/total?style=flat-square)
-![License](https://img.shields.io/github/license/sknt2024/mongo_vault?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-macOS-black?style=flat-square)
+<p align="center">
+  <img src="mongo_vault_icon.png" width="180" alt="MongoVault Icon">
+</p>
 
+<p align="center">
+  <b>Professional macOS MongoDB Backup & Restore Tool</b>
+</p>
 
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/sknt2024/mongo_vault?style=flat-square" />
+  <img src="https://github.com/sknt2024/mongo_vault/actions/workflows/release-please.yml/badge.svg" />
+  <img src="https://img.shields.io/github/downloads/sknt2024/mongo_vault/total?style=flat-square" />
+  <img src="https://img.shields.io/github/license/sknt2024/mongo_vault?style=flat-square" />
+  <img src="https://img.shields.io/badge/platform-macOS-black?style=flat-square" />
+</p>
+
+---
 
 📘 **Documentation**
 - [Changelog](CHANGELOG.md)
 - [License](LICENSE)
 
+---
+
+## 🧠 Overview
 
 **MongoVault** is a professional macOS desktop application for MongoDB Backup & Restore built with PyQt6.
 
@@ -33,6 +46,7 @@ It provides a modern GUI for running `mongodump` and `mongorestore` with enterpr
 - Restore mode selector (Safe / Replace)
 - Log streaming in real time
 - macOS-ready `.app` packaging
+- Custom macOS app icon & DMG installer
 
 ---
 
@@ -45,20 +59,20 @@ It provides a modern GUI for running `mongodump` and `mongorestore` with enterpr
 Install tools:
 
 ```bash
+brew tap mongodb/brew
 brew install mongodb-database-tools
 ```
 
-## 📦 Installation
+## 📦 Installation (Development)
 
 ```bash
-git clone https://github.com/your-org/mongovault.git
-cd mongovault
+git clone https://github.com/sknt2024/mongo_vault.git
+cd mongo_vault
 
 python3 -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
-
 ```
 
 Run:
@@ -71,18 +85,20 @@ python3 run.py
 
 ```bash
 pip install pyinstaller
-pyinstaller --windowed --onefile run.py
+pyinstaller --windowed --noconfirm \
+  --name MongoVault \
+  --icon assets/icon.icns \
+  --add-data "version.txt:." \
+  run.py
 ```
 
 The app will be in the `dist` folder.
 
 **dist/MongoVault.app**
 
-## 🔐 Security
+## 💿 Download
 
-Future versions will include:
+Download the latest DMG from:
 
-- macOS Keychain integration
-- Secure profile storage
-- Environment safety guards
-  
+👉 Releases Page
+https://github.com/sknt2024/mongo_vault/releases
