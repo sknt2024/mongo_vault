@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/sknt2024/mongo_vault/compare/v1.1.1...v1.2.0) (2026-02-22)
+
+
+### Features
+
+* Add version badge and documentation links to README. ([1bf5ed7](https://github.com/sknt2024/mongo_vault/commit/1bf5ed7b09d760dfdd637ef2ba854e99fb599da9))
+* configure release-please for simple releases with custom pull request title, header, and footer. ([d67bd2c](https://github.com/sknt2024/mongo_vault/commit/d67bd2cc8daac4cd77623c2fa6fb9cde3aa8c735))
+* Modify release workflow and add README update step ([8225977](https://github.com/sknt2024/mongo_vault/commit/8225977f7f1394ace66a550b4dbcacdcc566e884))
+* Set up initial project structure for MongoVault, a PyQt6 MongoDB backup and restore GUI. ([77f6d79](https://github.com/sknt2024/mongo_vault/commit/77f6d79b19683974451629067641179c5ba17b48))
+
+
+### Bug Fixes
+
+* trigger automated release ([f8fdbe1](https://github.com/sknt2024/mongo_vault/commit/f8fdbe1e0e9c19fd68c5e126070616e4106cc12f))
+
 ## [1.1.1](https://github.com/sknt2024/mongo_vault/compare/v1.1.0...v1.1.1) (2026-02-22)
 
 
