@@ -1,0 +1,22 @@
+name: 🤖 Auto Changelog & Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚀 Release Please
+        uses: google-github-actions/release-please-action@v4
+        with:
+          token: ${{ secrets.TOKEN }}
+          release-type: python
+          package-name: mongovault
+          changelog-path: CHANGELOG.md
