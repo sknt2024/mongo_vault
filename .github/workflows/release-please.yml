@@ -16,7 +16,4 @@ jobs:
       - name: 🚀 Release Please
         uses: google-github-actions/release-please-action@v4
         with:
-          token: ${{ secrets.TOKEN }}
           release-type: python
-          package-name: mongovault
-          changelog-path: CHANGELOG.md
