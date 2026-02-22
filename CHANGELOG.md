@@ -1,0 +1,184 @@
+# 📦 Changelog
+
+All notable changes to **MongoVault** will be documented in this file.
+
+The format follows:
+- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+- [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PATCH)
+
+---
+
+# [1.1.0] - 2026-02-22
+
+## ✨ Added
+
+### 🎨 UI & Theme System
+- Dark macOS theme support
+- Light theme support
+- Automatic system theme detection
+- Manual theme toggle button
+- QSS-based modern UI styling
+- Improved contrast for logs panel
+- Centralized Theme Manager
+
+### ⚙️ Backup Enhancements
+- Exclude collections input (comma-separated)
+- Parallel collections slider (1–16)
+- Background threaded execution (no UI freeze)
+- Automatic compression to `.tar.gz`
+- Structured backup result reporting
+
+### 🔄 Restore Enhancements
+- Replace (`--drop`) restore mode
+- Append (safe) restore mode
+- Smart duplicate key detection (E11000 parsing)
+- Index conflict detection (IndexOptionsConflict)
+- Structured restore result handling
+- Restore log file generation
+
+### 🏗 Architecture Improvements
+- Modular service-layer design
+- `command_runner` for centralized command execution
+- Structured return objects for backup & restore
+- Clean separation of:
+  - UI layer
+  - Service layer
+  - Worker thread layer
+  - Utility layer
+- Dedicated theme management module
+- Centralized constants & version management
+
+---
+
+## 🔧 Improved
+
+- Refactored backup & restore logic
+- Improved error handling and reporting
+- Removed legacy command execution logic
+- Cleaner threading model
+- Enhanced log output formatting
+- Codebase restructured for scalability
+- Improved macOS packaging readiness
+
+---
+
+## 🛠 Fixed
+
+- Import errors after service-layer refactor
+- Worker-thread command mismatch
+- Undefined timestamp and legacy compression calls
+- Inconsistent restore execution paths
+- Blocking UI during backup/restore execution
+
+---
+
+# [1.0.0] - 2026-02-20
+
+## 🚀 Initial Release
+
+### ✨ Core Features
+- MongoDB Backup (mongodump)
+- MongoDB Restore (mongorestore)
+- Compressed `.tar.gz` backup generation
+- Replace (`--drop`) restore mode
+- Append restore mode
+- Parallel collections support
+- Live logs panel
+- PyQt6 macOS desktop GUI
+- Basic modular project structure
+- macOS `.app` packaging support via PyInstaller
+
+### 🏗 Architecture
+- Basic modular separation
+- Worker thread execution
+- Service-based command building
+- Clean UI layout with tabs (Backup / Restore)
+
+---
+
+# [Unreleased]
+
+## 🎯 Planned Features
+
+### 📚 Collection Management
+- Dynamic collection selection checkboxes
+- Auto-fetch collection names from MongoDB
+- Include / Exclude toggle mode
+- Select All / Deselect All
+
+### 📊 Progress & Monitoring
+- Real-time progress percentage parsing
+- Progress bar with estimated completion
+- Restore preview mode
+- Dry-run restore option
+
+### 🔐 Security Enhancements
+- Secure password storage via macOS Keychain
+- Encrypted profile storage
+- Environment safety warnings for production restores
+
+### 💾 Connection Profiles
+- Saved connection profiles
+- Environment presets (Dev / UAT / Prod)
+- Environment badge indicator (color-coded)
+- Confirmation dialog for PROD restore
+
+### 🗑 Retention Management
+- Auto-delete old backups
+- Configurable retention policy
+- Scheduled cleanup on startup
+
+### 📦 Advanced Features
+- Drag & Drop restore support
+- S3 backup upload integration
+- Scheduled backups (Cron integration)
+- Backup encryption (AES-256)
+- Slack / Email notifications
+- CI/CD macOS auto-build workflow
+- DMG installer automation
+
+---
+
+# 🏷 Versioning Strategy
+
+MongoVault follows **Semantic Versioning**:
+
+
+| Type  | Meaning |
+|--------|---------|
+| MAJOR | Breaking changes |
+| MINOR | New features |
+| PATCH | Bug fixes |
+
+---
+
+# 📌 Release Guidelines
+
+- UI-only enhancements → MINOR
+- New features → MINOR
+- Breaking architecture changes → MAJOR
+- Bug fixes → PATCH
+
+---
+
+# 🛡 About MongoVault
+
+MongoVault is a secure, modern macOS desktop application designed to provide:
+
+- Reliable MongoDB backup
+- Safe restore workflows
+- Smart duplicate detection
+- Developer-friendly experience
+- Production-ready architecture
+
+Built with:
+- Python
+- PyQt6
+- MongoDB Database Tools
+
+---
+
+# 🚀 Current Stable Version
+
+
+MongoVault has now evolved into a modular, theme-enabled, smart-restore macOS desktop application ready for production expansion.
