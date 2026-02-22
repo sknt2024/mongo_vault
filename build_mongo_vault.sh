@@ -132,7 +132,8 @@ CMD="pyinstaller \
   --noconfirm \
   --name MongoVault \
   --icon assets/icon.icns \
-  --osx-bundle-identifier com.yourname.mongovault \
+  --add-data \"app/themes:themes\" \
+  --osx-bundle-identifier com.mongovault.app \
   --add-data \"version.txt:.\" \
   run.py"
 
