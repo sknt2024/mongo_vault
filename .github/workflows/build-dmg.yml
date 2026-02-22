@@ -43,11 +43,20 @@ jobs:
           source venv/bin/activate
           pyinstaller --windowed --name MongoVault run.py
 
+      # 🔍 Get latest tag created by release-please
+      - name: 🔍 Get Latest Tag
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0)
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: 📦 Install create-dmg
+        run: brew install create-dmg
+
       - name: 📦 Create DMG
         run: |
-          brew install create-dmg
-          TAG=$(git describe --tags --abbrev=0)
-          
+          TAG=${{ steps.get_tag.outputs.tag }}
+
           create-dmg \
             --volname "MongoVault" \
             --window-size 600 400 \
@@ -58,7 +67,8 @@ jobs:
       - name: 🚀 Upload DMG to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: MongoVault-*.dmg
+          tag_name: ${{ steps.get_tag.outputs.tag }}
+          files: MongoVault-${{ steps.get_tag.outputs.tag }}.dmg
           overwrite_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
