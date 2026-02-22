@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/sknt2024/mongo_vault/compare/v1.3.0...v1.4.0) (2026-02-22)
+
+
+### Features
+
+* Add GitHub Actions workflow to build macOS DMG ([13eebbe](https://github.com/sknt2024/mongo_vault/commit/13eebbe65fb93dc316b71118e0483f8177e7a4dc))
+
 ## [1.3.0](https://github.com/sknt2024/mongo_vault/compare/v1.2.0...v1.3.0) (2026-02-22)
 
 
