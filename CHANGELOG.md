@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/sknt2024/mongo_vault/compare/v1.2.0...v1.3.0) (2026-02-22)
+
+
+### Features
+
+* Configure release-please with minor/patch bumping and custom changelog sections, removing pull request header patterns. ([61bf322](https://github.com/sknt2024/mongo_vault/commit/61bf322bf6550d34435e292cf32c220f096c85ce))
+
 ## [1.2.0](https://github.com/sknt2024/mongo_vault/compare/v1.1.1...v1.2.0) (2026-02-22)
 
 
