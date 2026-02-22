@@ -1,19 +1,24 @@
 name: 📦 Build macOS DMG
 
 on:
-  release:
-    types: [created]
+  workflow_run:
+    workflows: ["🚀 Auto Release"]
+    types:
+      - completed
 
 permissions:
   contents: write
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: macos-latest
 
     steps:
       - name: 📥 Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
@@ -41,16 +46,17 @@ jobs:
       - name: 📦 Create DMG
         run: |
           brew install create-dmg
+          VERSION=${{ github.event.workflow_run.head_branch }}
           create-dmg \
             --volname "MongoVault" \
             --window-size 600 400 \
             --app-drop-link 450 200 \
-            MongoVault.dmg \
+            MongoVault-${VERSION}.dmg \
             dist/MongoVault.app
 
       - name: 🚀 Upload DMG to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: MongoVault.dmg
+          files: MongoVault-*.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
