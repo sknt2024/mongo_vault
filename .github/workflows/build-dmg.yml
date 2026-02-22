@@ -38,17 +38,24 @@ jobs:
           brew tap mongodb/brew
           brew install mongodb-database-tools
 
-      - name: 🏗 Build App
-        run: |
-          source venv/bin/activate
-          pyinstaller --windowed --name MongoVault run.py
-
       # 🔍 Get latest tag created by release-please
       - name: 🔍 Get Latest Tag
         id: get_tag
         run: |
           TAG=$(git describe --tags --abbrev=0)
           echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: 🏗 Build App (WITH ICON + VERSION)
+        run: |
+          source venv/bin/activate
+          pyinstaller \
+            --windowed \
+            --noconfirm \
+            --name MongoVault \
+            --icon assets/icon.icns \
+            --osx-bundle-identifier com.sknt2024.mongovault \
+            --add-data "version.txt:." \
+            run.py
 
       - name: 📦 Install create-dmg
         run: brew install create-dmg
