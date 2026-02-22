@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2](https://github.com/sknt2024/mongo_vault/compare/v1.7.1...v1.7.2) (2026-02-22)
+
+
+### Bug Fixes
+
+* Revamp dark and light themes with green accents and comprehensive UI styling, and update theme management. ([1f3d096](https://github.com/sknt2024/mongo_vault/commit/1f3d0965d855d76431bb3eec9086245af0b4c639))
+
 ## [1.7.1](https://github.com/sknt2024/mongo_vault/compare/v1.7.0...v1.7.1) (2026-02-22)
 
 
