@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/sknt2024/mongo_vault/compare/v1.5.0...v1.5.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* Add config file parameter to release-please action ([6cdced9](https://github.com/sknt2024/mongo_vault/commit/6cdced997dcf280ee962f99ef2630e66353bfc00))
+
 ## [1.5.0](https://github.com/sknt2024/mongo_vault/compare/v1.4.0...v1.5.0) (2026-02-22)
 
 
