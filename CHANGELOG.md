@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.5](https://github.com/sknt2024/mongo_vault/compare/v1.5.4...v1.5.5) (2026-02-22)
+
+
+### Bug Fixes
+
+* Update DMG creation to use git tags ([7c5574a](https://github.com/sknt2024/mongo_vault/commit/7c5574a32fb53007c8d5a6c67159d1578a1e1088))
+
 ## [1.5.4](https://github.com/sknt2024/mongo_vault/compare/v1.5.3...v1.5.4) (2026-02-22)
 
 
