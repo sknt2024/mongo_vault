@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/sknt2024/mongo_vault/compare/v1.5.3...v1.5.4) (2026-02-22)
+
+
+### Bug Fixes
+
+* Modify DMG upload to use release tag and overwrite ([1768549](https://github.com/sknt2024/mongo_vault/commit/176854963eab4b4dab489d279cf905758bf70b31))
+
 ## [1.5.3](https://github.com/sknt2024/mongo_vault/compare/v1.5.2...v1.5.3) (2026-02-22)
 
 
