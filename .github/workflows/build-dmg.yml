@@ -1,9 +1,8 @@
 name: 📦 Build macOS DMG
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [created]
 
 permissions:
   contents: write
