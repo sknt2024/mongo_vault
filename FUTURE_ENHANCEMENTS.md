@@ -2,7 +2,7 @@
 
 This document outlines planned improvements and advanced features for the MongoVault macOS application.
 
-## 🎨 1. Dark macOS Theme
+## 🎨 1. Dark macOS Theme - Done
 
 ### Objective
 
@@ -21,7 +21,7 @@ Provide a native macOS dark mode experience that matches system appearance.
 - Apply custom QSS stylesheet
 - Detect macOS appearance via NSAppearance (optional advanced)
 
-## ⚡ 2. Parallel Collections Slider
+## ⚡ 2. Parallel Collections Slider - Done
 
 ### Objective
 
