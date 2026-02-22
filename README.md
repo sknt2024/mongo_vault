@@ -1,6 +1,6 @@
 # 🛡 MongoVault
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)]()
+![Version](https://img.shields.io/github/v/release/sknt2024/mongo_vault)
 
 📘 **Documentation**
 - [Changelog](CHANGELOG.md)
