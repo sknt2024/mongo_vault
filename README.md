@@ -1,6 +1,12 @@
 # 🛡 MongoVault
 
-![Version](https://img.shields.io/github/v/release/sknt2024/mongo_vault)
+![Version](https://img.shields.io/github/v/release/sknt2024/mongo_vault?style=flat-square)
+![CI](https://github.com/sknt2024/mongo_vault/actions/workflows/release-please.yml/badge.svg)
+![Downloads](https://img.shields.io/github/downloads/sknt2024/mongo_vault/total?style=flat-square)
+![License](https://img.shields.io/github/license/sknt2024/mongo_vault?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-macOS-black?style=flat-square)
+
+
 
 📘 **Documentation**
 - [Changelog](CHANGELOG.md)
