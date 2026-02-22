@@ -46,18 +46,19 @@ jobs:
       - name: 📦 Create DMG
         run: |
           brew install create-dmg
-          VERSION=${{ github.event.workflow_run.head_branch }}
+          TAG=$(git describe --tags --abbrev=0)
+          
           create-dmg \
             --volname "MongoVault" \
             --window-size 600 400 \
             --app-drop-link 450 200 \
-            MongoVault-${VERSION}.dmg \
+            MongoVault-${TAG}.dmg \
             dist/MongoVault.app
 
       - name: 🚀 Upload DMG to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: MongoVault-${{ github.event.release.tag_name }}.dmg
+          files: MongoVault-*.dmg
           overwrite_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
