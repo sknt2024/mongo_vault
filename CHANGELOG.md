@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/sknt2024/mongo_vault/compare/v1.5.1...v1.5.2) (2026-02-22)
+
+
+### Bug Fixes
+
+* Modify DMG build workflow to use workflow_run ([9bc8d96](https://github.com/sknt2024/mongo_vault/commit/9bc8d963a0575c6bac405f90ce310ae475726e4f))
+
 ## [1.5.1](https://github.com/sknt2024/mongo_vault/compare/v1.5.0...v1.5.1) (2026-02-22)
 
 
