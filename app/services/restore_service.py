@@ -1,87 +1,66 @@
-import tempfile
-import tarfile
 import os
-import shutil
-import datetime
-from .command_runner import run_command
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure, OperationFailure
 
 
-def restore_database(
+def validate_restore_connection(uri: str, db_name: str):
+    """Validate MongoDB connection using pymongo."""
+    try:
+        client = MongoClient(uri, serverSelectionTimeoutMS=5000)
+        client[db_name].command("ping")
+        client.close()
+        return {"success": True}
+    except ConnectionFailure as e:
+        return {"success": False, "error": f"Connection failed: {e}"}
+    except OperationFailure as e:
+        return {"success": False, "error": f"Auth failed: {e}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+def build_restore_command(
     backup_file: str,
     uri: str,
     db_name: str,
-    drop: bool = False,
+    drop: bool = True,
     parallel: int = 1,
-    include_collections=None,
-    exclude_collections=None
 ):
     """
-    Restore MongoDB backup with optional include/exclude collection filtering.
+    Build the mongorestore command list for a native archive (.archive.gz).
+    Returns (command, error_string) — error_string is None on success.
     """
-
-    if include_collections is None:
-        include_collections = []
-
-    if exclude_collections is None:
-        exclude_collections = []
+    if not backup_file:
+        return None, "No backup file selected."
 
     if not os.path.isfile(backup_file):
-        return {"success": False, "error": "Backup file not found"}
+        return None, f"Backup file not found: {backup_file}"
 
-    if not backup_file.endswith(".tar.gz"):
-        return {"success": False, "error": "Invalid backup format (.tar.gz required)"}
+    if not backup_file.endswith(".archive.gz"):
+        return None, "Invalid backup format — select a .archive.gz file."
 
     if not uri or not db_name:
-        return {"success": False, "error": "URI and DB name required"}
+        return None, "URI and database name are required."
 
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    log_file = f"{backup_file.replace('.tar.gz','')}_restore_{timestamp}.log"
+    # Derive source DB name from the archive filename
+    # Convention: {db_name}_backup_{timestamp}.archive.gz
+    basename = os.path.basename(backup_file)
+    if "_backup_" in basename:
+        source_db = basename.split("_backup_")[0]
+    else:
+        source_db = db_name  # fallback: assume same DB name
 
-    temp_dir = tempfile.mkdtemp(prefix="mongo_restore_")
+    command = [
+        "mongorestore",
+        "--uri", uri,
+        f"--archive={backup_file}",
+        "--gzip",
+        f"--nsFrom={source_db}.*",
+        f"--nsTo={db_name}.*",
+        f"--numParallelCollections={parallel}",
+    ]
 
-    try:
-        # Extract backup
-        with tarfile.open(backup_file, "r:gz") as tar:
-            tar.extractall(temp_dir)
+    if drop:
+        command.append("--drop")
 
-        # Find extracted timestamp directory
-        dirs = [
-            os.path.join(temp_dir, d)
-            for d in os.listdir(temp_dir)
-            if os.path.isdir(os.path.join(temp_dir, d))
-        ]
+    return command, None
 
-        if not dirs:
-            return {"success": False, "error": "Invalid backup structure"}
-
-        timestamp_dir = dirs[0]
-
-        command = [
-            "mongorestore",
-            "--uri", uri,
-            "--dir", timestamp_dir,
-            f"--numParallelCollections={parallel}"
-        ]
-
-        if drop:
-            command.append("--drop")
-
-        # Include specific collections
-        if include_collections:
-            for col in include_collections:
-                command.append(f"--nsInclude={db_name}.{col}")
-
-        # Exclude specific collections
-        if exclude_collections:
-            for col in exclude_collections:
-                command.append(f"--nsExclude={db_name}.{col}")
-
-        result = run_command(command, log_file)
-
-        result["log_file"] = log_file
-        result["timestamp"] = timestamp
-
-        return result
-
-    finally:
-        shutil.rmtree(temp_dir)

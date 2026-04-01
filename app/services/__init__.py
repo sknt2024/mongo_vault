@@ -2,12 +2,13 @@
 Service Layer Package
 """
 
-from .backup_service import backup_database
-from .restore_service import restore_database
-from .retention_service import apply_retention_policy
+from .backup_service import backup_database, validate_connection, apply_retention_policy
+from .restore_service import validate_restore_connection, build_restore_command
 
 __all__ = [
     "backup_database",
-    "restore_database",
+    "validate_connection",
     "apply_retention_policy",
+    "validate_restore_connection",
+    "build_restore_command",
 ]

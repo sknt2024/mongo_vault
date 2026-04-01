@@ -38,7 +38,7 @@ Allow users to optimize performance during backup and restore.
 - Faster backups for large databases
 - Better performance tuning for Atlas clusters
 
-## 📚 3. Collection Selection Checkboxes
+## 📚 3. Collection Selection Checkboxes - Done
 
 ### Objective
 
@@ -67,7 +67,7 @@ mongosh --eval "db.getCollectionNames()"
 - Restore specific collections only
 - Avoid full database restore
 
-## 📊 4. Progress Bar with Percentage
+## 📊 4. Progress Bar with Percentage - Done
 
 ### Objective
 

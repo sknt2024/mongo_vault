@@ -1,8 +1,21 @@
 import os
 import datetime
-import shutil
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure, OperationFailure
 from .command_runner import run_command
 
+def validate_connection(uri: str, db_name: str):
+    try:
+        client = MongoClient(uri, serverSelectionTimeoutMS=5000)
+        client[db_name].command("ping")
+        client.close()
+        return {"success": True}
+    except ConnectionFailure as e:
+        return {"success": False, "error": f"Connection failed: {e}"}
+    except OperationFailure as e:
+        return {"success": False, "error": f"Auth failed: {e}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 def backup_database(
     uri: str,
@@ -13,8 +26,8 @@ def backup_database(
     exclude_collections=None
 ):
     """
-    Perform MongoDB backup with optional collection filtering.
-    Returns result dictionary from run_command().
+    Perform MongoDB backup using native archive mode.
+    Returns structured result.
     """
 
     if include_collections is None:
@@ -26,54 +39,86 @@ def backup_database(
     if not uri or not db_name:
         return {"success": False, "error": "URI and DB name required"}
 
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    backup_dir = os.path.join(backup_root, timestamp)
+    # Ensure backup directory exists
+    os.makedirs(backup_root, exist_ok=True)
 
-    compressed_file = os.path.join(
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    archive_file = os.path.join(
         backup_root,
-        f"{db_name}_backup_{timestamp}.tar.gz"
+        f"{db_name}_backup_{timestamp}.archive.gz"
     )
 
-    os.makedirs(backup_dir, exist_ok=True)
-
+    # 🔥 Use Mongo native archive mode (BEST PRACTICE)
     command = [
         "mongodump",
         "--uri", uri,
         "--db", db_name,
-        "--out", backup_dir,
+        f"--archive={archive_file}",
+        "--gzip",
         f"--numParallelCollections={parallel}"
     ]
 
-    # Include specific collections (if provided)
-    if include_collections:
-        for col in include_collections:
-            command.append(f"--collection={col}")
+    # Include specific collections
+    for col in include_collections:
+        command.append(f"--collection={col}")
 
     # Exclude collections
-    if exclude_collections:
-        for col in exclude_collections:
-            command.append(f"--excludeCollection={col}")
+    for col in exclude_collections:
+        command.append(f"--excludeCollection={col}")
 
     result = run_command(command)
 
+    # 🔥 Check mongodump execution
     if not result.get("success"):
         return result
 
-    # Compress backup
-    shutil.make_archive(
-        compressed_file.replace(".tar.gz", ""),
-        "gztar",
-        backup_root,
-        timestamp
+    # 🔥 Validate archive file exists
+    if not os.path.exists(archive_file):
+        return {
+            "success": False,
+            "error": "Backup archive was not created."
+        }
+
+    size_bytes = os.path.getsize(archive_file)
+
+    # 🔥 Validate archive not empty
+    if size_bytes == 0:
+        return {
+            "success": False,
+            "error": "Backup archive is empty (0 bytes)."
+        }
+
+    size_mb = round(size_bytes / (1024 * 1024), 2)
+
+    return {
+        "success": True,
+        "backup_file": archive_file,
+        "size_mb": size_mb,
+        "timestamp": timestamp,
+        "duplicate_count": result.get("duplicate_count", 0),
+        "index_conflicts": result.get("index_conflicts", 0),
+    }
+
+def apply_retention_policy(backup_root: str, keep_last: int = 5):
+    """
+    Delete old backups, keeping only the `keep_last` most recent archives.
+    """
+    if not os.path.isdir(backup_root):
+        return
+
+    archives = sorted(
+        [
+            os.path.join(backup_root, f)
+            for f in os.listdir(backup_root)
+            if f.endswith(".archive.gz")
+        ],
+        key=os.path.getmtime,
+        reverse=True  # newest first
     )
 
-    shutil.rmtree(backup_dir)
-
-    result["backup_file"] = compressed_file
-    result["size_mb"] = round(
-        os.path.getsize(compressed_file) / (1024 * 1024),
-        2
-    )
-    result["timestamp"] = timestamp
-
-    return result
+    for old_archive in archives[keep_last:]:
+        try:
+            os.remove(old_archive)
+        except OSError:
+            pass
